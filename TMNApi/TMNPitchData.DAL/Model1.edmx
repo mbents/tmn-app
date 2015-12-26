@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TMN_HackathonModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="TMN_HackathonModelStoreContainer">
+          <EntitySet Name="Pitches" EntityType="TMN_HackathonModel.Store.Pitches" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Players" EntityType="TMN_HackathonModel.Store.Players" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Pitches">
+          <Key>
+            <PropertyRef Name="PitchID" />
+          </Key>
+          <Property Name="PitchID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="seasonYear" Type="int" />
+          <Property Name="gameString" Type="varchar" MaxLength="50" />
+          <Property Name="gameDate" Type="datetime" />
+          <Property Name="gameType" Type="varchar" MaxLength="10" />
+          <Property Name="visitor" Type="varchar" MaxLength="5" />
+          <Property Name="home" Type="varchar" MaxLength="5" />
+          <Property Name="visitingTeamFinalRuns" Type="int" />
+          <Property Name="homeTeamFinalRuns" Type="int" />
+          <Property Name="inning" Type="int" />
+          <Property Name="side" Type="varchar" MaxLength="1" />
+          <Property Name="batterId" Type="int" />
+          <Property Name="batter" Type="varchar" MaxLength="50" />
+          <Property Name="batterHand" Type="varchar" MaxLength="5" />
+          <Property Name="pitcherId" Type="int" />
+          <Property Name="pitcher" Type="varchar" MaxLength="50" />
+          <Property Name="pitcherHand" Type="varchar" MaxLength="5" />
+          <Property Name="catcherId" Type="int" />
+          <Property Name="catcher" Type="varchar" MaxLength="50" />
+          <Property Name="timesFaced" Type="int" />
+          <Property Name="batterPosition" Type="varchar" MaxLength="5" />
+          <Property Name="balls" Type="int" />
+          <Property Name="strikes" Type="int" />
+          <Property Name="outs" Type="int" />
+          <Property Name="manOnFirst" Type="varchar" MaxLength="10" />
+          <Property Name="manOnSecond" Type="varchar" MaxLength="10" />
+          <Property Name="manOnThird" Type="varchar" MaxLength="10" />
+          <Property Name="endManOnFirst" Type="varchar" MaxLength="10" />
+          <Property Name="endManOnSecond" Type="varchar" MaxLength="10" />
+          <Property Name="endManOnThird" Type="varchar" MaxLength="10" />
+          <Property Name="visitingTeamCurrentRuns" Type="int" />
+          <Property Name="homeTeamCurrentRuns" Type="int" />
+          <Property Name="pitchResult" Type="varchar" MaxLength="5" />
+          <Property Name="pitchType" Type="varchar" MaxLength="5" />
+          <Property Name="releaseVelocity" Type="varchar" MaxLength="50" />
+          <Property Name="spinRate" Type="varchar" MaxLength="50" />
+          <Property Name="spinDir" Type="varchar" MaxLength="50" />
+          <Property Name="px" Type="varchar" MaxLength="50" />
+          <Property Name="pz" Type="varchar" MaxLength="50" />
+          <Property Name="szt" Type="varchar" MaxLength="50" />
+          <Property Name="szb" Type="varchar" MaxLength="50" />
+          <Property Name="x0" Type="varchar" MaxLength="50" />
+          <Property Name="y0" Type="varchar" MaxLength="50" />
+          <Property Name="z0" Type="varchar" MaxLength="50" />
+          <Property Name="vx0" Type="varchar" MaxLength="50" />
+          <Property Name="vy0" Type="varchar" MaxLength="50" />
+          <Property Name="vz0" Type="varchar" MaxLength="50" />
+          <Property Name="ax" Type="varchar" MaxLength="50" />
+          <Property Name="ay" Type="varchar" MaxLength="50" />
+          <Property Name="az" Type="varchar" MaxLength="50" />
+          <Property Name="paResult" Type="varchar" MaxLength="50" />
+          <Property Name="runsHome" Type="varchar" MaxLength="5" />
+          <Property Name="battedBallType" Type="varchar" MaxLength="5" />
+          <Property Name="battedBallAngle" Type="varchar" MaxLength="50" />
+          <Property Name="battedBallDistance" Type="varchar" MaxLength="50" />
+          <Property Name="atbatDesc" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PlayerId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Bats" Type="varchar" MaxLength="5" />
+          <Property Name="Throws" Type="varchar" MaxLength="5" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TMN_HackathonModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PitchDataEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Pitches" EntityType="TMN_HackathonModel.Pitch" />
+          <EntitySet Name="Players" EntityType="TMN_HackathonModel.Player" />
+        </EntityContainer>
+        <EntityType Name="Pitch">
+          <Key>
+            <PropertyRef Name="PitchID" />
+          </Key>
+          <Property Name="PitchID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="seasonYear" Type="Int32" />
+          <Property Name="gameString" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="gameDate" Type="DateTime" Precision="3" />
+          <Property Name="gameType" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="visitor" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="home" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="visitingTeamFinalRuns" Type="Int32" />
+          <Property Name="homeTeamFinalRuns" Type="Int32" />
+          <Property Name="inning" Type="Int32" />
+          <Property Name="side" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="batterId" Type="Int32" />
+          <Property Name="batter" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="batterHand" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="pitcherId" Type="Int32" />
+          <Property Name="pitcher" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="pitcherHand" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="catcherId" Type="Int32" />
+          <Property Name="catcher" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="timesFaced" Type="Int32" />
+          <Property Name="batterPosition" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="balls" Type="Int32" />
+          <Property Name="strikes" Type="Int32" />
+          <Property Name="outs" Type="Int32" />
+          <Property Name="manOnFirst" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="manOnSecond" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="manOnThird" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="endManOnFirst" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="endManOnSecond" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="endManOnThird" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="visitingTeamCurrentRuns" Type="Int32" />
+          <Property Name="homeTeamCurrentRuns" Type="Int32" />
+          <Property Name="pitchResult" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="pitchType" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="releaseVelocity" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="spinRate" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="spinDir" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="px" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="pz" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="szt" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="szb" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="x0" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="y0" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="z0" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="vx0" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="vy0" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="vz0" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ax" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ay" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="az" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="paResult" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="runsHome" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="battedBallType" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="battedBallAngle" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="battedBallDistance" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="atbatDesc" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PlayerId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Bats" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="Throws" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TMN_HackathonModelStoreContainer" CdmEntityContainer="PitchDataEntities">
+          <EntitySetMapping Name="Pitches">
+            <EntityTypeMapping TypeName="TMN_HackathonModel.Pitch">
+              <MappingFragment StoreEntitySet="Pitches">
+                <ScalarProperty Name="PitchID" ColumnName="PitchID" />
+                <ScalarProperty Name="seasonYear" ColumnName="seasonYear" />
+                <ScalarProperty Name="gameString" ColumnName="gameString" />
+                <ScalarProperty Name="gameDate" ColumnName="gameDate" />
+                <ScalarProperty Name="gameType" ColumnName="gameType" />
+                <ScalarProperty Name="visitor" ColumnName="visitor" />
+                <ScalarProperty Name="home" ColumnName="home" />
+                <ScalarProperty Name="visitingTeamFinalRuns" ColumnName="visitingTeamFinalRuns" />
+                <ScalarProperty Name="homeTeamFinalRuns" ColumnName="homeTeamFinalRuns" />
+                <ScalarProperty Name="inning" ColumnName="inning" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="batterId" ColumnName="batterId" />
+                <ScalarProperty Name="batter" ColumnName="batter" />
+                <ScalarProperty Name="batterHand" ColumnName="batterHand" />
+                <ScalarProperty Name="pitcherId" ColumnName="pitcherId" />
+                <ScalarProperty Name="pitcher" ColumnName="pitcher" />
+                <ScalarProperty Name="pitcherHand" ColumnName="pitcherHand" />
+                <ScalarProperty Name="catcherId" ColumnName="catcherId" />
+                <ScalarProperty Name="catcher" ColumnName="catcher" />
+                <ScalarProperty Name="timesFaced" ColumnName="timesFaced" />
+                <ScalarProperty Name="batterPosition" ColumnName="batterPosition" />
+                <ScalarProperty Name="balls" ColumnName="balls" />
+                <ScalarProperty Name="strikes" ColumnName="strikes" />
+                <ScalarProperty Name="outs" ColumnName="outs" />
+                <ScalarProperty Name="manOnFirst" ColumnName="manOnFirst" />
+                <ScalarProperty Name="manOnSecond" ColumnName="manOnSecond" />
+                <ScalarProperty Name="manOnThird" ColumnName="manOnThird" />
+                <ScalarProperty Name="endManOnFirst" ColumnName="endManOnFirst" />
+                <ScalarProperty Name="endManOnSecond" ColumnName="endManOnSecond" />
+                <ScalarProperty Name="endManOnThird" ColumnName="endManOnThird" />
+                <ScalarProperty Name="visitingTeamCurrentRuns" ColumnName="visitingTeamCurrentRuns" />
+                <ScalarProperty Name="homeTeamCurrentRuns" ColumnName="homeTeamCurrentRuns" />
+                <ScalarProperty Name="pitchResult" ColumnName="pitchResult" />
+                <ScalarProperty Name="pitchType" ColumnName="pitchType" />
+                <ScalarProperty Name="releaseVelocity" ColumnName="releaseVelocity" />
+                <ScalarProperty Name="spinRate" ColumnName="spinRate" />
+                <ScalarProperty Name="spinDir" ColumnName="spinDir" />
+                <ScalarProperty Name="px" ColumnName="px" />
+                <ScalarProperty Name="pz" ColumnName="pz" />
+                <ScalarProperty Name="szt" ColumnName="szt" />
+                <ScalarProperty Name="szb" ColumnName="szb" />
+                <ScalarProperty Name="x0" ColumnName="x0" />
+                <ScalarProperty Name="y0" ColumnName="y0" />
+                <ScalarProperty Name="z0" ColumnName="z0" />
+                <ScalarProperty Name="vx0" ColumnName="vx0" />
+                <ScalarProperty Name="vy0" ColumnName="vy0" />
+                <ScalarProperty Name="vz0" ColumnName="vz0" />
+                <ScalarProperty Name="ax" ColumnName="ax" />
+                <ScalarProperty Name="ay" ColumnName="ay" />
+                <ScalarProperty Name="az" ColumnName="az" />
+                <ScalarProperty Name="paResult" ColumnName="paResult" />
+                <ScalarProperty Name="runsHome" ColumnName="runsHome" />
+                <ScalarProperty Name="battedBallType" ColumnName="battedBallType" />
+                <ScalarProperty Name="battedBallAngle" ColumnName="battedBallAngle" />
+                <ScalarProperty Name="battedBallDistance" ColumnName="battedBallDistance" />
+                <ScalarProperty Name="atbatDesc" ColumnName="atbatDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="TMN_HackathonModel.Player">
+              <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Bats" ColumnName="Bats" />
+                <ScalarProperty Name="Throws" ColumnName="Throws" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
