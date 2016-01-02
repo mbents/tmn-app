@@ -46,6 +46,7 @@ h3 {
     width: 49%;
     padding-bottom:30px;
     clear:left;
+    overflow-x:auto;
 }
 
 .right {
@@ -53,10 +54,7 @@ h3 {
     width: 49%;
     padding-bottom:30px;
     clear:right;
-}
-
-#data-table {
-    font-size: 0.65vw;
+    overflow-x:auto;
 }
 
 .home {

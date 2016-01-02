@@ -16,6 +16,13 @@
 
                     var table = document.createElement("table");
                     table.setAttribute("class", "pure-table pure-table-bordered pure-table-striped");
+
+                    if (columnHeaders.length >= 9) {
+                        table.style.fontSize = "0.6vw";
+                    } else if (columnHeaders.length >= 5) {
+                        table.style.fontSize = "0.8vw";
+                    }
+
                     addTableHeader(table, columnHeaders);
                     for (var i = 0; i < rowData.length; i++) {
                         var tr = table.insertRow();
