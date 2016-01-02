@@ -27,5 +27,6 @@ namespace TMNPitchData.DAL
     
         public DbSet<Pitch> Pitches { get; set; }
         public DbSet<Player> Players { get; set; }
+        public DbSet<PitchAverage> PitchAverages { get; set; }
     }
 }

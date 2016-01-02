@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using TMNApi.Models;
 using TMNPitchData.DAL;
+using System.Linq.Dynamic;
 
 namespace TMNApi.Controllers
 {
@@ -13,14 +11,16 @@ namespace TMNApi.Controllers
     {
         // GET api/search/5
         [HttpGet]
-        public List<PlayerModel> Get(int id)
+        public List<PlayerModel> Get(string id)
         {
             var list = new List<PlayerModel>();
             using (var dbContext = new PitchDataEntities())
             {
                 var results = dbContext.Players
-                                .Where(x => x.PlayerId == id)
-                                .Select(x => new PlayerModel { Bats = x.Bats, Name = x.Name, PlayerID = x.PlayerId.Value, Throws = x.Throws }).ToList();
+                                .Where(x => x.Name.Contains(id))
+                                .Select(x => new PlayerModel { Bats = x.Bats, Name = x.Name, PlayerID = x.PlayerId.Value, Throws = x.Throws })
+                                .OrderBy(x => x.Name)
+                                .ToList();
                 list = results;
             }
             return list;

@@ -7,6 +7,7 @@
       <Diagram DiagramId="3bf696fde0ba4b3683ad10fcb0422317" Name="Diagram1" ZoomLevel="60">
         <EntityTypeShape EntityType="TMN_HackathonModel.Pitch" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TMN_HackathonModel.Player" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMN_HackathonModel.PitchAverage" Width="1.5" PointX="4.43631603961639" PointY="17.945673980724845" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

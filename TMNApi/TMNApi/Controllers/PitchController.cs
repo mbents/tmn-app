@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using TMNApi.Models;
 using TMNPitchData.DAL;
@@ -12,17 +9,31 @@ namespace TMNApi.Controllers
 {
     public class PitchController : ApiController
     {
-        public List<PitchModel> Get([FromUri]string bid=null, string pid=null, string d=null)
+        [HttpGet]
+        public List<AtBatCountModel> Get(string id)
         {
-            var list = new List<PitchModel>();
+            var list = new List<AtBatCountModel>();
             using (var dbContext = new PitchDataEntities())
             {
-                var queryModel = Utilities.BuildWhereClause(bid, pid, d);
+                var queryModel = Utilities.BuildWhereClause(null, null, id, "pitcherId", null, null);
+                var pitchExpectancy = dbContext.Pitches
+                                        .Where(queryModel.WhereClause, queryModel.Values.ToArray());
 
-                var results = dbContext.Pitches
-                                .Where(queryModel.WhereClause, queryModel.Values.ToArray());
-
-                list = Utilities.MapFields(results);
+                list = (from r in pitchExpectancy.AsEnumerable()
+                        group r by new 
+                        { 
+                            AB_count = r.balls.Value + "-" + r.strikes.Value, 
+                            r.pitchType,
+                            r.batterHand
+                        } into grp
+                        orderby grp.Key.AB_count
+                        select new AtBatCountModel
+                        {
+                            pitchType = grp.Key.pitchType,
+                            atBatCount = grp.Key.AB_count,
+                            pitchTypeCount = grp.Count(),
+                            batterHand = grp.Key.batterHand
+                        }).ToList();
             }
             return list;
         }

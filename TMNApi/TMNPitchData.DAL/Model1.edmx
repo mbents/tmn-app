@@ -4,11 +4,27 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TMN_HackathonModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TMN_HackathonModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="TMN_HackathonModelStoreContainer">
+          <EntitySet Name="PitchAverages" EntityType="TMN_HackathonModel.Store.PitchAverages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Pitches" EntityType="TMN_HackathonModel.Store.Pitches" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Players" EntityType="TMN_HackathonModel.Store.Players" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
+        <EntityType Name="PitchAverages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PlayerId" Type="int" Nullable="false" />
+          <Property Name="PitchType" Type="varchar" MaxLength="5" />
+          <Property Name="BatterHand" Type="varchar" MaxLength="2" />
+          <Property Name="AvgReleaseVelocity" Type="decimal" Scale="2" />
+          <Property Name="ReleaseVelocitySampleSize" Type="int" />
+          <Property Name="AvgSpinRate" Type="decimal" Scale="2" />
+          <Property Name="SpinRateSampleSize" Type="int" />
+          <Property Name="SwStrRate" Type="decimal" Scale="2" />
+          <Property Name="SwStrRateSampleSize" Type="int" />
+        </EntityType>
         <EntityType Name="Pitches">
           <Key>
             <PropertyRef Name="PitchID" />
@@ -80,14 +96,14 @@
           <Property Name="Bats" Type="varchar" MaxLength="5" />
           <Property Name="Throws" Type="varchar" MaxLength="5" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TMN_HackathonModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PitchDataEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Pitches" EntityType="TMN_HackathonModel.Pitch" />
           <EntitySet Name="Players" EntityType="TMN_HackathonModel.Player" />
+          <EntitySet Name="PitchAverages" EntityType="TMN_HackathonModel.PitchAverage" />
         </EntityContainer>
         <EntityType Name="Pitch">
           <Key>
@@ -159,6 +175,21 @@
           <Property Name="Name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="Bats" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
           <Property Name="Throws" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PitchAverage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="PlayerId" Nullable="false" />
+          <Property Type="String" Name="PitchType" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BatterHand" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="AvgReleaseVelocity" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="ReleaseVelocitySampleSize" />
+          <Property Type="Decimal" Name="AvgSpinRate" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="SpinRateSampleSize" />
+          <Property Type="Decimal" Name="SwStrRate" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="SwStrRateSampleSize" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -236,6 +267,22 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Bats" ColumnName="Bats" />
                 <ScalarProperty Name="Throws" ColumnName="Throws" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PitchAverages">
+            <EntityTypeMapping TypeName="TMN_HackathonModel.PitchAverage">
+              <MappingFragment StoreEntitySet="PitchAverages">
+                <ScalarProperty Name="SwStrRateSampleSize" ColumnName="SwStrRateSampleSize" />
+                <ScalarProperty Name="SwStrRate" ColumnName="SwStrRate" />
+                <ScalarProperty Name="SpinRateSampleSize" ColumnName="SpinRateSampleSize" />
+                <ScalarProperty Name="AvgSpinRate" ColumnName="AvgSpinRate" />
+                <ScalarProperty Name="ReleaseVelocitySampleSize" ColumnName="ReleaseVelocitySampleSize" />
+                <ScalarProperty Name="AvgReleaseVelocity" ColumnName="AvgReleaseVelocity" />
+                <ScalarProperty Name="BatterHand" ColumnName="BatterHand" />
+                <ScalarProperty Name="PitchType" ColumnName="PitchType" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
